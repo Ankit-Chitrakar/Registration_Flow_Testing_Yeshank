@@ -1,5 +1,41 @@
+# Ignore the virtual environment folder
+.venv/
+env/
+venv/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python cache files
 __pycache__/
 *.py[cod]
 
-# Ignore virtual environment directory
-.venv
+# Ignore PyCharm project files
+.idea/
+*.iml
+
+# Ignore logs and reports
+logs/
+*.log
+reports/
+*.csv
+*.sqlite3
+
+# Ignore test artifacts
+htmlcov/
+*.cover
+.coverage
+
+# Ignore dependency files
+Pipfile
+Pipfile.lock
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+
+# Ignore environment variables and credentials
+.env
+*.env
+
