@@ -5,6 +5,7 @@ class Configuration:
     web_url = "https://practicesoftwaretesting.com/"
     registration_endpoint = "auth/register"
     login_endpoint = "auth/login"
+    forget_password_endpoint = "auth/forgot-password"
     firstname = "Ankit"
     lastname = "Chitrakar"
     dob = "12-02-2005"

@@ -5,6 +5,7 @@ import pytest
 from selenium import webdriver
 
 from data.configuration import Configuration
+from pageobjects.login_page_actions import LoginPageActions
 from pageobjects.registration_page_actions import RegistrationPageActions
 from utilities.email_utils import EmailUtils
 
@@ -74,6 +75,39 @@ def check_for_invalid_email(chrome_driver):
     reg.fill_phone(Configuration.phone)
     reg.fill_email(Configuration.invalid_email)
     reg.fill_password(Configuration.password)
+    return driver
+
+@pytest.fixture(scope="function")
+def fill_login_details(chrome_driver):
+    driver = chrome_driver(Configuration.web_url + Configuration.login_endpoint)
+    log = LoginPageActions(driver)
+
+    existing_email = EmailUtils.get_next_email()
+    log.fill_email(existing_email)
+    log.fill_password(Configuration.password)
+    log.view_password()
+    return driver
+
+
+@pytest.fixture(scope="function")
+def skip_login_details(chrome_driver):
+    driver = chrome_driver(Configuration.web_url + Configuration.login_endpoint)
+    log = LoginPageActions(driver)
+
+    log.skip_email()
+    log.skip_password()
+    log.view_password()
+
+    return driver
+
+@pytest.fixture(scope="function")
+def login_invalid_credentials(chrome_driver):
+    driver = chrome_driver(Configuration.web_url + Configuration.login_endpoint)
+    log = LoginPageActions(driver)
+
+    log.fill_email(EmailUtils.generate_random_email())
+    log.fill_password(Configuration.password)
+    log.view_password()
     return driver
 
 
